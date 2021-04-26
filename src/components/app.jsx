@@ -1,33 +1,49 @@
 import React, { Component } from 'react';
+import ReactMapGL from 'react-map-gl';
+
 import FlatList from './flat_list';
-import GoogleMapReact from './google_map_react';
+// import GoogleMapReact from './google_map_react';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedFlat: {
-        name: "Charm at the Steps of the Sacre Coeur/Montmartre",
-        imageUrl: "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat1.jpg",
-        price: 164,
-        priceCurrency: "EUR",
-        lat: 48.884211,
-        lng: 2.34689
-      }
+      viewport: {
+        width: "100%",
+        height: "100%",
+        latitude: 48.884211,
+        longitude: 2.34689,
+        zoom: 16
+      },
     };
   }
 
-  selectFlat = (flat) => {
-    this.setState({ selectedFlat: flat });
+  selectFlat = (coords) => {
+    const newLat = parseFloat(coords.lat);
+    const newLng = parseFloat(coords.lng);
+    this.setState({
+      viewport: {
+        width: "100%",
+        height: "100%",
+        latitude: newLat,
+        longitude: newLng,
+        zoom: 16
+      }
+    });
   }
 
   render() {
-    const selectedFlat = this.state.selectedFlat;
+    const { viewport } = this.state;
     return (
       <div>
         <FlatList selectFlat={this.selectFlat} />
-        <GoogleMapReact selectedFlat={selectedFlat} />
+        <div className="map-container">
+          <ReactMapGL
+            {...viewport}
+            mapStyle="mapbox://styles/mapbox/outdoors-v11"
+            mapboxApiAccessToken="pk.eyJ1IjoiYXJmYWNhbWJsZSIsImEiOiJja2tzZHV2bmIwY2pvMm9wbHZyNXp4ZGhyIn0.o6iMnm5jA87biUSUix8jog" />
+        </div>
       </div>
     );
   }

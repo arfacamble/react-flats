@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Flat extends Component {
   handleClick = (event) => {
     const { selectFlat } = this.props;
-    selectFlat(event.target);
+    selectFlat(event.target.dataset);
   };
 
   render() {
@@ -18,7 +18,7 @@ class Flat extends Component {
         <div className="card-description">
           <h2>{flat.name}</h2>
         </div>
-        <a className="card-link" href="#" onClick={this.handleClick}></a>
+        <a className="card-link" href="#" data-lat={flat.lat} data-lng={flat.lng} onClick={this.handleClick}></a>
       </div>
     );
   }
