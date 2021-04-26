@@ -29,8 +29,16 @@ body {
 .map-container {
   height: 100vh;
   width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: sticky !important; /* !important to override Gmaps inline CSS */
   top: 0 !important;
+  .card {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .flat-list {
