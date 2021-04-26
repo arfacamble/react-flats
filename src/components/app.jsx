@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 
 import FlatList from './flat_list';
 // import GoogleMapReact from './google_map_react';
@@ -42,7 +42,17 @@ class App extends Component {
           <ReactMapGL
             {...viewport}
             mapStyle="mapbox://styles/mapbox/outdoors-v11"
-            mapboxApiAccessToken="pk.eyJ1IjoiYXJmYWNhbWJsZSIsImEiOiJja2tzZHV2bmIwY2pvMm9wbHZyNXp4ZGhyIn0.o6iMnm5jA87biUSUix8jog" />
+            mapboxApiAccessToken="XXX"
+          >
+            <Marker
+              latitude={viewport.latitude}
+              longitude={viewport.longitude}
+              offsetLeft={-20}
+              offsetTop={-10}
+            >
+              <p>O</p>
+            </Marker>
+          </ReactMapGL>
         </div>
       </div>
     );
