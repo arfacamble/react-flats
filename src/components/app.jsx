@@ -45,13 +45,12 @@ class App extends Component {
             mapboxApiAccessToken="XXX"
           >
             <Marker
+              className="marker"
               latitude={viewport.latitude}
               longitude={viewport.longitude}
               offsetLeft={-20}
               offsetTop={-10}
-            >
-              <p>O</p>
-            </Marker>
+            />
           </ReactMapGL>
         </div>
       </div>
